@@ -6,7 +6,7 @@ const TodoList = ({ title , cards }) => {
         <div style= {styles.container}>
             <h3>{title}</h3>
             {cards.map(card=>(
-            <Card description={card.description} /> 
+            <Card key={card.id} description={card.description} /> 
             ))}
             <Button/>
         </div>

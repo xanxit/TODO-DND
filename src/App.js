@@ -8,7 +8,7 @@ function App({lists}) {
       <h1>Hello World!</h1>
       <div style={styles.container}>
       {lists.map(list=>(
-        <TodoList title={list.title} cards={list.cards}/>
+        <TodoList key={list.id} title={list.title} cards={list.cards}/>
       ))}
       </div>
       </div>

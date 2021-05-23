@@ -1,5 +1,6 @@
 import React,{useState} from 'react'
 import Icon from '@material-ui/core/Icon'
+import Card from './Card'
 function Button({lists}) {
     const [state,setState]=useState(false)
     const buttonText= lists?"Add a List":"Add a card";
@@ -10,6 +11,7 @@ function Button({lists}) {
     //     setState(true);
         
     // }
+    console.log(state);
     const addButton=()=>
     (
         <div onClick={()=>setState(true)} style={{...style.button ,backgroundColor:buttonTextBG,opacity:buttonOpacity,color:buttonTextColor} }>
@@ -17,12 +19,18 @@ function Button({lists}) {
         <p>{buttonText}</p>
     </div>
     )
-    
+    console.log(state);
 
     const formRender =()=>(
-        <div><p>Yo baby</p></div>
+        <div>
+            <Card description="Add your Task"/>
+        </div>
         )
-return (state?addButton():formRender())
+return (state?
+formRender()
+    :
+addButton()
+)
 }
 const style={
     button:{
