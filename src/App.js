@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import TodoList from './components/TodoList';
 import { connect } from 'react-redux';
+import Button from './components/Button';
 function App({lists}) {
   return (
     <div className="App">
@@ -10,6 +11,7 @@ function App({lists}) {
       {lists.map(list=>(
         <TodoList key={list.id} title={list.title} cards={list.cards}/>
       ))}
+      <Button lists/>
       </div>
       </div>
   );

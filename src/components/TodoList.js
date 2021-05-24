@@ -19,6 +19,7 @@ const styles={
             width:300,
             padding:8,
             marginRight:20,
+            height:"100%"
 
         }
 }
