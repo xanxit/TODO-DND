@@ -3,6 +3,9 @@ import Icon from '@material-ui/core/Icon'
 import Card from '@material-ui/core/Card';
 import TextArea from 'react-textarea-autosize';
 import Add from '@material-ui/core/Button';
+import { connect, useDispatch } from 'react-redux';
+import {addList} from '../actions';
+// const dispatch = useDispatch() ;
 
 function Button({lists}) {
     const [state,setState]=useState(false)
@@ -16,6 +19,11 @@ function Button({lists}) {
     // }
     const placeholder= lists?"Enter title for your List":"Enter title for your task";
     const buttonText=lists?"Add List":"Add Task";
+    const dispatch = useDispatch() ;
+    const listHandler=() =>{
+        // e.preventDefault();
+dispatch (addList(text)) ;
+    }
 
     const addButton=()=>
     (
@@ -48,8 +56,8 @@ function Button({lists}) {
                 }/>
             </Card>
             <div>
-                <Add variant="contained" style={{color:"white", backgroundColor:"black"}}>{buttonText}</Add>
-                <Icon style={{marginTop:8,marginLeft:8, marginBottom: 1,cursor: "pointer"}}>delete</Icon>
+                <Add onMouseDown={listHandler()} variant="contained" style={{color:"white", backgroundColor:"black"}}>{buttonText}</Add>
+                <Icon style={{marginTop:10,marginLeft:8,width:100, marginBottom: 1,cursor: "pointer"}}>delete</Icon>
             </div>
         </div>
         )
@@ -73,4 +81,4 @@ const style={
 }
 
 
-export default Button
+export default connect ()(Button);

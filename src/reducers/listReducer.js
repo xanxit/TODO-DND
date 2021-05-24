@@ -1,3 +1,5 @@
+import {CONSTRAINTS} from '../actions'
+let listID=5;
 const initialState=[{
     title: 'First Task',
     id:1,
@@ -67,6 +69,14 @@ cards:[{
 const listReducer=(state=initialState,action)=>{
     switch(action.type)
     {
+        case CONSTRAINTS.ADD_LIST:
+            const newList ={
+                title:action.payload,
+                cards:[],
+                id:listID   
+            }
+            listID=listID+1;
+            return [...state,newList]
         default: return state
     }
 }
