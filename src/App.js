@@ -9,7 +9,7 @@ function App({lists}) {
       <h1>Hello World!</h1>
       <div style={styles.container}>
       {lists.map(list=>(
-        <TodoList key={list.id} title={list.title} cards={list.cards}/>
+        <TodoList listID={list.id} key={list.id} title={list.title} cards={list.cards}/>
       ))}
       <Button lists/>
       </div>

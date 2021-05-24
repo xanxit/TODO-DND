@@ -4,12 +4,12 @@ import Card from '@material-ui/core/Card';
 import TextArea from 'react-textarea-autosize';
 import Add from '@material-ui/core/Button';
 import { connect, useDispatch } from 'react-redux';
-import {addList} from '../actions';
+import {addList,addCard} from '../actions';
 // const dispatch = useDispatch() ;
 
 function Button({lists}) {
     const [state,setState]=useState(false)
-    const [text,setText]=useState({});
+    const [text,setText]=useState("");
     const buttonOpacity= lists?1:0.5;
     const buttonTextColor=lists?"white":"inherit";
     const buttonTextBG=lists?"rgba(0,0,0,0.15)":"inherit";
@@ -22,7 +22,11 @@ function Button({lists}) {
     const dispatch = useDispatch() ;
     const listHandler=() =>{
         // e.preventDefault();
-dispatch (addList(text)) ;
+dispatch (addCard(text)) ;
+    }
+    const cardHandler=({listID}) =>{
+        // e.preventDefault();
+dispatch (addList(listID,text)) ;
     }
 
     const addButton=()=>
@@ -44,7 +48,7 @@ dispatch (addList(text)) ;
                 <TextArea placeholder={placeholder} 
                 autoFocus
                 onBlur={()=>setState(false)}
-                onChange={(e)=>setText({text:e.target.value})}
+                onChange={(e)=>setText(e.target.value)}
                 style={
                         {
                             resize:"none",
@@ -56,16 +60,18 @@ dispatch (addList(text)) ;
                 }/>
             </Card>
             <div>
-                <Add onMouseDown={listHandler()} variant="contained" style={{color:"white", backgroundColor:"black"}}>{buttonText}</Add>
+                <Add onMouseDown={lists?{listHandler}:{cardHandler}} variant="contained" style={{color:"white", backgroundColor:"black"}}>{buttonText}</Add>
                 <Icon style={{marginTop:10,marginLeft:8,width:100, marginBottom: 1,cursor: "pointer"}}>delete</Icon>
             </div>
         </div>
         )
+        console.log(text);
 return (state?
 formRender()
     :
 addButton()
 )
+
 }
 const style={
     button:{

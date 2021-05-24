@@ -1,7 +1,7 @@
 import {CONSTRAINTS} from '../actions'
- export const addList=title=>{
+ export const addCard= (listID,description) =>{
  return {
         type:CONSTRAINTS.ADD_LIST,
-        payload: title
+        payload: {description,listID}
  }
  }
