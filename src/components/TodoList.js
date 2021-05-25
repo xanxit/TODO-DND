@@ -1,14 +1,14 @@
 import React from 'react';
 import Card from './Card';
 import Button from './Button';
-const TodoList = ({ title , cards }) => {
+const TodoList = ({ title , cards, listID }) => {
     return (
         <div style= {styles.container}>
             <h3>{title}</h3>
             {cards.map(card=>(
-            <Card description={card.description} /> 
+            <Card key={card.id} description={card.description} /> 
             ))}
-            <Button/>
+            <Button listID={listID}/>
         </div>
     )
 }
@@ -19,6 +19,7 @@ const styles={
             width:300,
             padding:8,
             marginRight:20,
+            height:"100%"
 
         }
 }
