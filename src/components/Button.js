@@ -7,7 +7,7 @@ import { connect, useDispatch } from 'react-redux';
 import {addList,addCard} from '../actions';
 // const dispatch = useDispatch() ;
 
-function Button({lists}) {
+function Button({lists,listID}) {
     const [state,setState]=useState(false)
     const [text,setText]=useState("");
     const buttonOpacity= lists?1:0.5;
@@ -17,6 +17,7 @@ function Button({lists}) {
     //     setState(true);
         
     // }
+    console.log(listID);
     
     const placeholder= lists?"Enter title for your List":"Enter title for your task";
     const buttonText=lists?"Add List":"Add Task";
@@ -24,15 +25,18 @@ function Button({lists}) {
     const listHandler=() =>{
         // e.preventDefault();
         if(text){
+            console.log("call")
             setText("")
         dispatch(addList(text)) ;
+        
 }
     }
-    const cardHandler=({listID}) =>{
+    const cardHandler=() =>{
         // e.preventDefault();
         if(text){
+            console.log("call2")
             setText("") 
-        dispatch(addCard(listID,text)) ;
+        dispatch(addCard(listID,text));
 }
     }   
 
@@ -42,6 +46,7 @@ function Button({lists}) {
         <Icon>add</Icon>
         <p>{placeholder}</p>
     </div>
+    
     )
 
 
@@ -67,12 +72,13 @@ function Button({lists}) {
                 }/>
             </Card>
             <div>
-                <Add onMouseDown={state?listHandler:cardHandler} variant="contained" style={{color:"white", backgroundColor:"black"}}>{buttonText}</Add>
+                <Add onMouseDown={listID===undefined?listHandler:cardHandler} variant="contained" style={{color:"white", backgroundColor:"black"}}>{buttonText}</Add>
                 <Icon style={{marginTop:10,marginLeft:8,width:100, marginBottom: 1,cursor: "pointer"}}>delete</Icon>
             </div>
         </div>
         )
         // console.log(text);
+        console.log(state);
 return (state?
 formRender()
     :
