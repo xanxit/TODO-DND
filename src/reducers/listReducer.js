@@ -1,6 +1,6 @@
 import {CONSTRAINTS} from '../actions'
-let listID=5;
-let cardID=101;
+let listID=4;
+let cardID=6;
 const initialState=[{
     title: 'First Task',
     id:1,
@@ -78,18 +78,20 @@ const listReducer=(state=initialState,action)=>{
             }
             listID=listID+1;
             return [...state,newList];
+
+            
         case CONSTRAINTS.ADD_CARD:
             const newCard={
                 description:action.payload.description,
                 id:cardID,
             }
             cardID=cardID+1;
-            const newState=state.map(list=>{
+            const newState=state.lists.map(list=>{
                 if(list.id === action.payload.listID)
                 {
                     return {
-                        ...list,
-                        cards: [...list.cards,newCard]
+                        ...state,
+                        cards: [...state.list.cards,newCard]
                     }
                 }
                 else{

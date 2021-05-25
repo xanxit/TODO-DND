@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from './Card';
 import Button from './Button';
-const TodoList = ({ title , cards,listID }) => {
+const TodoList = ({ title , cards, listID }) => {
     return (
         <div style= {styles.container}>
             <h3>{title}</h3>

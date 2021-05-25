@@ -17,23 +17,30 @@ function Button({lists}) {
     //     setState(true);
         
     // }
+    
     const placeholder= lists?"Enter title for your List":"Enter title for your task";
     const buttonText=lists?"Add List":"Add Task";
     const dispatch = useDispatch() ;
     const listHandler=() =>{
         // e.preventDefault();
-dispatch (addCard(text)) ;
+        if(text){
+            setText("")
+        dispatch(addList(text)) ;
+}
     }
     const cardHandler=({listID}) =>{
         // e.preventDefault();
-dispatch (addList(listID,text)) ;
-    }
+        if(text){
+            setText("") 
+        dispatch(addCard(listID,text)) ;
+}
+    }   
 
     const addButton=()=>
     (
         <div onClick={()=>setState(true)} style={{...style.button ,backgroundColor:buttonTextBG,opacity:buttonOpacity,color:buttonTextColor} }>
         <Icon>add</Icon>
-        <p>{buttonText}</p>
+        <p>{placeholder}</p>
     </div>
     )
 
@@ -53,19 +60,19 @@ dispatch (addList(listID,text)) ;
                         {
                             resize:"none",
                             width:'100%',
-                            outline:"none",
+                            outline:"none", 
                             border:"none",
                             overflow:"hidden"
                         }
                 }/>
             </Card>
             <div>
-                <Add onMouseDown={lists?{listHandler}:{cardHandler}} variant="contained" style={{color:"white", backgroundColor:"black"}}>{buttonText}</Add>
+                <Add onMouseDown={state?listHandler:cardHandler} variant="contained" style={{color:"white", backgroundColor:"black"}}>{buttonText}</Add>
                 <Icon style={{marginTop:10,marginLeft:8,width:100, marginBottom: 1,cursor: "pointer"}}>delete</Icon>
             </div>
         </div>
         )
-        console.log(text);
+        // console.log(text);
 return (state?
 formRender()
     :
