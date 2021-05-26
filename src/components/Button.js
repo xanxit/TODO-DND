@@ -16,8 +16,7 @@ function Button({lists,listID}) {
     // function openForm(){
     //     setState(true);
         
-    // }
-    console.log(listID);
+    
     
     const placeholder= lists?"Enter title for your List":"Enter title for your task";
     const buttonText=lists?"Add List":"Add Task";
@@ -78,7 +77,7 @@ function Button({lists,listID}) {
         </div>
         )
         // console.log(text);
-        console.log(state);
+     
 return (state?
 formRender()
     :
