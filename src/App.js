@@ -4,9 +4,26 @@ import TodoList from './components/TodoList';
 import { connect } from 'react-redux';
 import Button from './components/Button';
 import {DragDropContext} from 'react-beautiful-dnd'
+import { sort } from './actions'
+import { useDispatch } from 'react-redux';
+
 function App({lists}) {
-  const onDragEnd=()=>{
-    
+  const dispatch = useDispatch() ;
+  const onDragEnd=(result)=>{
+    const { destination, source, draggableId }=result;
+
+    if(!destination)
+    {
+      return;
+    }
+    dispatch(sort(
+      source.droppableId,
+      destination.droppableId,
+      source.index,
+      destination.index,
+      draggableId
+    ))
+
   }
 
   return (

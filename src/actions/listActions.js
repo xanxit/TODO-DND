@@ -5,3 +5,22 @@ import {CONSTRAINTS} from '../actions'
         payload: title
  }
  }
+
+ export const sort = (
+     droppableIdStart,
+     droppableIdEnd,
+     droppableIndexStart,
+     droppableIndexEnd,
+     draggableId
+ )=>{
+    return{
+        type: CONSTRAINTS.DRAG_HAPPENED,
+        payload: {
+            droppableIdStart,
+            droppableIdEnd,
+            droppableIndexStart,
+            droppableIndexEnd,
+            draggableId
+        }
+    }
+ }
